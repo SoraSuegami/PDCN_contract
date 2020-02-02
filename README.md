@@ -1,2 +1,2 @@
-# propagative_attestation_contracts
-Contracts for propagative_attestation mechanism, written in Solidity
+# PDCN_contract
+Contracts for PDCN (Public Device Control Network), written in Solidity
