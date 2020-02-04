@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@openzeppelin/contracts": "^2.4.0",
+    "bignumber.js": "^9.0.0",
+    "openzeppelin-solidity": "^2.4.0"
+  },
+  "devDependencies": {}
+}

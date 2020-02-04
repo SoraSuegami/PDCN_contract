@@ -1,0 +1,104 @@
+{
+  "contractName": "HardwareId",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.5+commit.47a71e8f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/suegamisora/GoogleDrive/projects/PDCN_contract/contracts/HardwareId.sol\":\"HardwareId\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/suegamisora/GoogleDrive/projects/PDCN_contract/contracts/HardwareId.sol\":{\"keccak256\":\"0x25aa9fda0fb9b16f62135d360906134df492187c8c1aee424c46f75b89a7f66a\",\"urls\":[\"bzzr://93588201d47fcd2156ebf6da0351c763749778890b74a4e591b760301927a525\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603580601d6000396000f3fe6080604052600080fdfea165627a7a723058201c18bd24e9f958a645436ac4a52702d7021e48b048a471c7b8c48d6276fe85ff0029",
+  "deployedBytecode": "0x6080604052600080fdfea165627a7a723058201c18bd24e9f958a645436ac4a52702d7021e48b048a471c7b8c48d6276fe85ff0029",
+  "sourceMap": "26:28:3:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;26:28:3;;;;;;;",
+  "deployedSourceMap": "26:28:3:-;;;;;",
+  "source": "pragma solidity >=0.5.1;\n\ncontract HardwareId {\n    \n}",
+  "sourcePath": "/Users/suegamisora/GoogleDrive/projects/PDCN_contract/contracts/HardwareId.sol",
+  "ast": {
+    "absolutePath": "/Users/suegamisora/GoogleDrive/projects/PDCN_contract/contracts/HardwareId.sol",
+    "exportedSymbols": {
+      "HardwareId": [
+        128
+      ]
+    },
+    "id": 129,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 127,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.5",
+          ".1"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:3"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 128,
+        "linearizedBaseContracts": [
+          128
+        ],
+        "name": "HardwareId",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 129,
+        "src": "26:28:3"
+      }
+    ],
+    "src": "0:54:3"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/suegamisora/GoogleDrive/projects/PDCN_contract/contracts/HardwareId.sol",
+    "exportedSymbols": {
+      "HardwareId": [
+        128
+      ]
+    },
+    "id": 129,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 127,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.5",
+          ".1"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:3"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 128,
+        "linearizedBaseContracts": [
+          128
+        ],
+        "name": "HardwareId",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 129,
+        "src": "26:28:3"
+      }
+    ],
+    "src": "0:54:3"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.5+commit.47a71e8f.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.0.9",
+  "updatedAt": "2020-02-03T09:43:08.493Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
