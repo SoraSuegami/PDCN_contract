@@ -6,13 +6,12 @@ import "openzeppelin-solidity/contracts/token/ERC721/ERC721Burnable.sol";
 import "openzeppelin-solidity/contracts/token/ERC721/ERC721Holder.sol";
 import "openzeppelin-solidity/contracts/math/SafeMath.sol";
 import "openzeppelin-solidity/contracts/drafts/Counters.sol";
-//import {HardwareId} from "./HardwareId.sol";
+import {HardwareIds} from "./HardwareIds.sol";
 
 contract DeviceManager is ERC721Full, ERC721Mintable, ERC721Burnable, ERC721Holder {
     using SafeMath for uint256;
     using Counters for Counters.Counter;
 
-    mapping (uint256 => address) public hardwareId_of_deviceId;
     mapping (uint256 => string) public uri_of_deviceId;
     mapping (uint256 => uint256[]) public parts_of_deviceId;
     mapping (uint256 => uint256) public assembly_of_deviceId;
@@ -20,14 +19,12 @@ contract DeviceManager is ERC721Full, ERC721Mintable, ERC721Burnable, ERC721Hold
 
     event Produce (
         address indexed owner,
-        uint256 indexed device_id,
-        address indexed hardware_id
+        uint256 indexed device_id
     );
 
     event Assemble (
         address indexed owner,
         uint256 indexed device_id,
-        address indexed hardware_id,
         uint256[] parts
     );
 
@@ -36,7 +33,7 @@ contract DeviceManager is ERC721Full, ERC721Mintable, ERC721Burnable, ERC721Hold
         uint256 indexed device_id
     );
 
-    event Disposal (
+    event Dispose (
         address indexed owner,
         uint256 indexed device_id
     );
@@ -47,37 +44,34 @@ contract DeviceManager is ERC721Full, ERC721Mintable, ERC721Burnable, ERC721Hold
         return counter.current();
     }
 
-    function produce(address hardwareId, string memory uri) public returns(uint256) {
+    function produce(string memory uri) public returns(uint256) {
         uint256 device_id = _update_id();
         require(device_id!=0,"token id is zero.");
         bool success = safeMint(msg.sender,device_id);
         require(success,"fail to mint device nft.");
-        hardwareId_of_deviceId[device_id] = hardwareId;
         uri_of_deviceId[device_id] = uri;
         _setTokenURI(device_id, uri);
-        emit Produce(msg.sender, device_id, hardwareId);
+        emit Produce(msg.sender, device_id);
         return device_id;
     }
 
-    function assemble(uint256[] memory parts, uint256 hardwareId_index, string memory uri) public returns(uint256) {
+    function assemble(uint256[] memory parts, string memory uri) public returns(uint256) {
         uint len = parts.length;
         require(len>0,"the number of parts is zero.");
-        require(hardwareId_index>=0&&hardwareId_index<len,"invalid hardwareId index.");
         uint i;
         for(i=0;i<len;i++){
             require(parts[i]!=0,"part token id is zero.");
             require(assembly_of_deviceId[parts[i]]==0,"the device is used for other assembled device");
             _remove(parts[i]);
         }
-        address new_hardwareId = hardwareId_of_deviceId[parts[hardwareId_index]];
-        uint256 device_id = produce(new_hardwareId,uri);
+        uint256 device_id = produce(uri);
         require(device_id!=0,"assembled token id is zero.");
         require(msg.sender == ownerOf(device_id),"fail to produce assembled device nft.");
         parts_of_deviceId[device_id] = parts;
         for(i=0;i<len;i++){
             assembly_of_deviceId[parts[i]] = device_id;
         }
-        emit Assemble(msg.sender,device_id,new_hardwareId,parts);
+        emit Assemble(msg.sender,device_id,parts);
         return device_id;
     }
 
@@ -102,19 +96,19 @@ contract DeviceManager is ERC721Full, ERC721Mintable, ERC721Burnable, ERC721Hold
         return parts;
     }
 
-    function disposal(uint256 device_id) public {
+    function dispose(uint256 device_id) public {
         require(device_id!=0,"given device id is zero.");
         require(assembly_of_deviceId[device_id]==0,"the device is used for assembled device");
         if(parts_of_deviceId[device_id].length==0) {
             _remove(device_id);
             _reset(device_id);
-            emit Disposal(msg.sender,device_id);
+            emit Dispose(msg.sender,device_id);
         }
         else {
             uint256[] memory parts = disassemble(device_id);
             uint i;
             for(i=0;i<parts.length;i++){
-                disposal(parts[i]);
+                dispose(parts[i]);
             }
         }
     }
@@ -132,7 +126,6 @@ contract DeviceManager is ERC721Full, ERC721Mintable, ERC721Burnable, ERC721Hold
     }
 
     function _reset(uint256 device_id) private {
-        hardwareId_of_deviceId[device_id] = address(0);
         uri_of_deviceId[device_id] = "";
     }
 
