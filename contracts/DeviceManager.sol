@@ -40,7 +40,7 @@ contract DeviceManager is ERC721Full, ERC721Mintable, ERC721Burnable, ERC721Hold
 
     constructor() ERC721Full("Device", "DEVICE") public {}
 
-    function getCouner() public view returns(uint256) {
+    function getCounter() public view returns(uint256) {
         return counter.current();
     }
 
